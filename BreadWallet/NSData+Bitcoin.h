@@ -131,6 +131,7 @@ size_t chacha20Poly1305AEADDecrypt(void *_Nullable out, size_t outLen, const voi
 + (nonnull instancetype)dataWithBase58String:(NSString *_Nonnull)b58str;
 
 - (UInt160)SHA1;
+- (UInt256)Blake;
 - (UInt256)SHA256;
 - (UInt256)SHA256_2;
 - (UInt512)SHA512;
