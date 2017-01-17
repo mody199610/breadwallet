@@ -41,10 +41,10 @@
 #import "BREventManager.h"
 #import "breadwallet-Swift.h"
 
-#define SCAN_TIP      NSLocalizedString(@"Scan someone else's QR code to get their bitcoin address. "\
+#define SCAN_TIP      NSLocalizedString(@"Scan someone else's QR code to get their TRUMP address. "\
                                          "You can send a payment to anyone with an address.", nil)
-#define CLIPBOARD_TIP NSLocalizedString(@"Bitcoin addresses can also be copied to the clipboard. "\
-                                         "A bitcoin address always starts with '1' or '3'.", nil)
+#define CLIPBOARD_TIP NSLocalizedString(@"TRUMP addresses can also be copied to the clipboard. "\
+                                         "A TRUMP address always starts with 'T'.", nil)
 
 #define LOCK @"\xF0\x9F\x94\x92" // unicode lock symbol U+1F512 (utf-8)
 #define REDX @"\xE2\x9D\x8C"     // unicode cross mark U+274C, red x emoji (utf-8)
@@ -236,7 +236,7 @@ static NSString *sanitizeString(NSString *s)
                 
                 if (error) {
                     [[[UIAlertView alloc]
-                      initWithTitle:NSLocalizedString(@"couldn't transmit payment to bitcoin network", nil)
+                      initWithTitle:NSLocalizedString(@"couldn't transmit payment to TRUMP network", nil)
                       message:error.localizedDescription delegate:nil cancelButtonTitle:NSLocalizedString(@"ok", nil)
                       otherButtonTitles:nil] show];
                 }
@@ -317,7 +317,7 @@ static NSString *sanitizeString(NSString *s)
     };
     
     NSString *message = [NSString stringWithFormat:
-                         NSLocalizedString(@"%@ is requesting authentication using your bitcoin wallet.", nil),
+                         NSLocalizedString(@"%@ is requesting authentication using your TRUMP wallet.", nil),
                          bitid.siteName];
     UIAlertController *alertController =
         [UIAlertController alertControllerWithTitle:NSLocalizedString(@"BitID Authentication Request", nil)
@@ -365,7 +365,7 @@ memo:(NSString *)memo isSecure:(BOOL)isSecure
             [self confirmSweep:request.paymentAddress];
         }
         else {
-            [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"not a valid bitcoin address", nil)
+            [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"not a valid TRUMP address", nil)
               message:request.paymentAddress delegate:nil cancelButtonTitle:NSLocalizedString(@"ok", nil)
               otherButtonTitles:nil] show];
             [self cancel:nil];
@@ -430,7 +430,7 @@ memo:(NSString *)memo isSecure:(BOOL)isSecure
         self.request = protoReq;
         self.okAddress = address;
         [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"WARNING", nil)
-          message:NSLocalizedString(@"\nADDRESS ALREADY USED\n\nbitcoin addresses are intended for single use only\n\n"
+          message:NSLocalizedString(@"\nADDRESS ALREADY USED\n\nTRUMP addresses are intended for single use only\n\n"
                                     "re-use reduces privacy for both you and the recipient and can result in loss if "
                                     "the recipient doesn't directly control the address", nil)
           delegate:self cancelButtonTitle:nil
@@ -472,7 +472,7 @@ memo:(NSString *)memo isSecure:(BOOL)isSecure
     }
     else if (amount < TX_MIN_OUTPUT_AMOUNT) {
         [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"couldn't make payment", nil)
-          message:[NSString stringWithFormat:NSLocalizedString(@"bitcoin payments can't be less than %@", nil),
+          message:[NSString stringWithFormat:NSLocalizedString(@"TRUMP payments can't be less than %@", nil),
                    [manager stringForAmount:TX_MIN_OUTPUT_AMOUNT]] delegate:nil
           cancelButtonTitle:NSLocalizedString(@"ok", nil) otherButtonTitles:nil] show];
         [self cancel:nil];
@@ -480,7 +480,7 @@ memo:(NSString *)memo isSecure:(BOOL)isSecure
     }
     else if (outputTooSmall) {
         [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"couldn't make payment", nil)
-          message:[NSString stringWithFormat:NSLocalizedString(@"bitcoin transaction outputs can't be less than %@",
+          message:[NSString stringWithFormat:NSLocalizedString(@"TRUMP transaction outputs can't be less than %@",
                                                                nil), [manager stringForAmount:TX_MIN_OUTPUT_AMOUNT]]
           delegate:nil cancelButtonTitle:NSLocalizedString(@"ok", nil) otherButtonTitles:nil] show];
         [self cancel:nil];
@@ -545,7 +545,7 @@ memo:(NSString *)memo isSecure:(BOOL)isSecure
 
                 if (amount > 0 && amount < self.amount) {
                     [[[UIAlertView alloc]
-                      initWithTitle:NSLocalizedString(@"insufficient funds for bitcoin network fee", nil)
+                      initWithTitle:NSLocalizedString(@"insufficient funds for TRUMP network fee", nil)
                       message:[NSString stringWithFormat:NSLocalizedString(@"reduce payment amount by\n%@ (%@)?", nil),
                                [manager stringForAmount:self.amount - amount],
                                [manager localCurrencyStringForAmount:self.amount - amount]] delegate:self
@@ -557,7 +557,7 @@ memo:(NSString *)memo isSecure:(BOOL)isSecure
                 }
                 else {
                     [[[UIAlertView alloc]
-                      initWithTitle:NSLocalizedString(@"insufficient funds for bitcoin network fee", nil) message:nil
+                      initWithTitle:NSLocalizedString(@"insufficient funds for TRUMP network fee", nil) message:nil
                       delegate:self cancelButtonTitle:NSLocalizedString(@"ok", nil) otherButtonTitles:nil] show];
                 }
             }
@@ -574,7 +574,7 @@ memo:(NSString *)memo isSecure:(BOOL)isSecure
 
     if (! [manager.wallet signTransaction:tx withPrompt:prompt]) {
         [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"couldn't make payment", nil)
-          message:NSLocalizedString(@"error signing bitcoin transaction", nil) delegate:nil
+          message:NSLocalizedString(@"error signing TRUMP transaction", nil) delegate:nil
           cancelButtonTitle:NSLocalizedString(@"ok", nil) otherButtonTitles:nil] show];
     }
 
@@ -718,7 +718,7 @@ memo:(NSString *)memo isSecure:(BOOL)isSecure
                 self.sweepTx = tx;
 
                 NSString *alertFmt = NSLocalizedString(@"Send %@ (%@) from this private key into your wallet? "
-                                                       "The bitcoin network will receive a fee of %@ (%@).", nil);
+                                                       "The TRUMP network will receive a fee of %@ (%@).", nil);
                 NSString *alertMsg = [NSString stringWithFormat:alertFmt, [manager stringForAmount:amount],
                                       [manager localCurrencyStringForAmount:amount], [manager stringForAmount:fee],
                                       [manager localCurrencyStringForAmount:fee]];
@@ -912,7 +912,7 @@ memo:(NSString *)memo isSecure:(BOOL)isSecure
     }
     
     [[[UIAlertView alloc] initWithTitle:@""
-      message:NSLocalizedString(@"clipboard doesn't contain a valid bitcoin address", nil) delegate:nil
+      message:NSLocalizedString(@"clipboard doesn't contain a valid TRUMP address", nil) delegate:nil
       cancelButtonTitle:NSLocalizedString(@"ok", nil) otherButtonTitles:nil] show];
     [self performSelector:@selector(cancel:) withObject:self afterDelay:0.1];
 }
@@ -1104,10 +1104,10 @@ fromConnection:(AVCaptureConnection *)connection
                         if (([request.scheme isEqual:@"bitcoin"] && request.paymentAddress.length > 1) ||
                             [request.paymentAddress hasPrefix:@"1"] || [request.paymentAddress hasPrefix:@"3"]) {
                             self.scanController.message.text = [NSString stringWithFormat:@"%@:\n%@",
-                                                                NSLocalizedString(@"not a valid bitcoin address", nil),
+                                                                NSLocalizedString(@"not a valid TRUMP address", nil),
                                                                 request.paymentAddress];
                         }
-                        else self.scanController.message.text = NSLocalizedString(@"not a bitcoin QR code", nil);
+                        else self.scanController.message.text = NSLocalizedString(@"not a TRUMP QR code", nil);
                         
                         [self performSelector:@selector(resetQRGuide) withObject:nil afterDelay:0.35];
                         [BREventManager saveEvent:@"send:unsuccessful_bip73"];
