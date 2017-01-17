@@ -256,12 +256,12 @@ completion:(void (^)(BRPaymentProtocolRequest *req, NSError *error))completion
         if (! request) {
             NSLog(@"unexpected response from %@:\n%@", req.URL.host,
                   [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-            completion(nil, [NSError errorWithDomain:@"BreadWallet" code:417 userInfo:@{NSLocalizedDescriptionKey:
+            completion(nil, [NSError errorWithDomain:@"TRUMPCOIN" code:417 userInfo:@{NSLocalizedDescriptionKey:
                              [NSString stringWithFormat:NSLocalizedString(@"unexpected response from %@", nil),
                               req.URL.host]}]);
         }
         else if (! [request.details.network isEqual:network]) {
-            completion(nil, [NSError errorWithDomain:@"BreadWallet" code:417 userInfo:@{NSLocalizedDescriptionKey:
+            completion(nil, [NSError errorWithDomain:@"TRUMPCOIN" code:417 userInfo:@{NSLocalizedDescriptionKey:
                              [NSString stringWithFormat:NSLocalizedString(@"requested network \"%@\" instead of \"%@\"",
                                                                           nil), request.details.network, network]}]);
         }
@@ -278,7 +278,7 @@ completion:(void (^)(BRPaymentProtocolACK *ack, NSError *error))completion
     
     if (! req) {
         if (completion) {
-            completion(nil, [NSError errorWithDomain:@"BreadWallet" code:417
+            completion(nil, [NSError errorWithDomain:@"TRUMPCOIN" code:417
                              userInfo:@{NSLocalizedDescriptionKey:NSLocalizedString(@"bad payment URL", nil)}]);
         }
         
@@ -307,7 +307,7 @@ completion:(void (^)(BRPaymentProtocolACK *ack, NSError *error))completion
             NSLog(@"unexpected response from %@:\n%@", req.URL.host,
                   [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
             if (completion) {
-                completion(nil, [NSError errorWithDomain:@"BreadWallet" code:417 userInfo:@{NSLocalizedDescriptionKey:
+                completion(nil, [NSError errorWithDomain:@"TRUMPCOIN" code:417 userInfo:@{NSLocalizedDescriptionKey:
                                  [NSString stringWithFormat:NSLocalizedString(@"unexpected response from %@", nil),
                                   req.URL.host]}]);
             }
